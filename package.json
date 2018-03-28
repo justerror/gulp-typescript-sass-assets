@@ -28,7 +28,6 @@
   },
   "dependencies": {
     "bootstrap": "^4.0.0",
-    "bourbon": "^5.0.0",
     "font-awesome": "^4.7.0",
     "jquery": "^3.3.1"
   }
