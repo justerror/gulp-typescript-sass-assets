@@ -18,23 +18,12 @@ Full explanation is available at [tyftler.com/using-gulp-js-for-typescript-sass-
 
 ## Installation & Usage
 
-### Using the Example
-
-1.  `npm install -g gulp`
-2.  `npm install`
-3.  `gulp build` or `gulp watch`
-
-To get a demonstration of source maps, open the page in Google Chrome and click on the button labeled "console.error()". Open the developer console and click on the link that points to the origin of that error. Now you should see the correct line in the original TypeScript file although your browser runs the compiled JavaScript. That also works with CSS rules.
-
-### Use it for Your Own Project
-
 The necessary files are `package.json`, `gulpfile.js`, `config.json` and `tsconfig.json`.
 
 1.  `npm install -g gulp`
 2.  `npm install`
 3.  Setup environments in `config.json`
-4.  `gulp build`
-5.  `gulp watch`
+4.  `gulp build` or `gulp watch`
 
 ### Configuration
 
