@@ -20,13 +20,9 @@ Full explanation is available at [tyftler.com/using-gulp-js-for-typescript-sass-
 
 ### Using the Example
 
-1. `npm install -g gulp`
-2. `npm install`
-3. `npm install font-awesome` as example asset
-4. `gulp build`
-5. Open `example/dist/index.html`
-6. `gulp watch`
-7. Make changes in `example/src/` and reload browser
+1.  `npm install -g gulp`
+2.  `npm install`
+3.  `gulp build` or `gulp watch`
 
 To get a demonstration of source maps, open the page in Google Chrome and click on the button labeled "console.error()". Open the developer console and click on the link that points to the origin of that error. Now you should see the correct line in the original TypeScript file although your browser runs the compiled JavaScript. That also works with CSS rules.
 
@@ -34,11 +30,11 @@ To get a demonstration of source maps, open the page in Google Chrome and click 
 
 The necessary files are `package.json`, `gulpfile.js`, `config.json` and `tsconfig.json`.
 
-1. `npm install -g gulp`
-2. `npm install`
-3. Setup environments in `config.json`
-4. `gulp build`
-5. `gulp watch`
+1.  `npm install -g gulp`
+2.  `npm install`
+3.  Setup environments in `config.json`
+4.  `gulp build`
+5.  `gulp watch`
 
 ### Configuration
 
@@ -46,25 +42,25 @@ The necessary files are `package.json`, `gulpfile.js`, `config.json` and `tsconf
 
 For both TypeScript and Sass provide the following settings. Note that the source directory, output directory and source map settings of the `tsconfig.json` will be ignored.
 
-Property | Type | Description
--------- | ---- | -----------
-src | string | Pattern for source files, e.g. `ts/**/*.ts` for all TypeScript files in all subdirectories of `ts/`.
-outDir | string | Directory where to put the compiled files.
-outExt | string | Extension of the compiled files, e.g. `.js` or `.min.js`.
-minify | boolean | Minify compiled files?
-sourceMaps.use | boolean | Generate source maps?
-sourceMaps.external | boolean | Generate inline source maps or external files? External source maps can be kept private in a protected folder.
-sourceMaps.externalRelDir | string | Directory to store source maps, relative to `outDir`.
-sourceMaps.externalURLPrefix | string | URL to prepend to external source maps’ paths, e.g. if copied to another domain.
+| Property                     | Type    | Description                                                                                                    |
+| ---------------------------- | ------- | -------------------------------------------------------------------------------------------------------------- |
+| src                          | string  | Pattern for source files, e.g. `ts/**/*.ts` for all TypeScript files in all subdirectories of `ts/`.           |
+| outDir                       | string  | Directory where to put the compiled files.                                                                     |
+| outExt                       | string  | Extension of the compiled files, e.g. `.js` or `.min.js`.                                                      |
+| minify                       | boolean | Minify compiled files?                                                                                         |
+| sourceMaps.use               | boolean | Generate source maps?                                                                                          |
+| sourceMaps.external          | boolean | Generate inline source maps or external files? External source maps can be kept private in a protected folder. |
+| sourceMaps.externalRelDir    | string  | Directory to store source maps, relative to `outDir`.                                                          |
+| sourceMaps.externalURLPrefix | string  | URL to prepend to external source maps’ paths, e.g. if copied to another domain.                               |
 
 #### Assets
 
 Third-party libraries like jQuery or Font Awesome can be comfortably managed through NPM and then be copied as asset. Provide an array of asset files to be copied, each of them with source and output directory. If the expected files are not found an error is thrown.
 
-Property | Type | Description
--------- | ---- | -----------
-src | string | Pattern of files to copy.
-outDir | string | Directory to copy files to.
+| Property | Type   | Description                 |
+| -------- | ------ | --------------------------- |
+| src      | string | Pattern of files to copy.   |
+| outDir   | string | Directory to copy files to. |
 
 #### Clean
 
@@ -76,9 +72,11 @@ You can get a list of the available commands running `gulp help`. Use the param 
 
     Usage: gulp [TASK] [--env ENVIRONMENT]
     Tasks:
-        build     Clean files, compile TypeScript and Sass and copy assets
-        watch     Watch and recompile TypeScript and Sass
-        ts        Compile TypeScript
-        sass      Compile Sass
-        assets    Copy assets
-        clean     Clean files
+        build         Clean files, compile TypeScript and Sass and copy assets
+        watch         Watch and recompile TypeScript and Sass and run live server
+        ts            Compile TypeScript
+        sass          Compile Sass
+        assets        Copy assets
+        html          Copy html files
+        browser-sync  Run live server
+        clean         Clean files

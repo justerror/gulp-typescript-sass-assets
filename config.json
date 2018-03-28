@@ -1,8 +1,12 @@
 {
   "dev": {
+    "html": {
+      "src": "src/**/*.html",
+      "outDir": "dist"
+    },
     "typescript": {
-      "src": "example/src/ts/**/*.ts",
-      "outDir": "example/dist/js",
+      "src": "src/ts/**/*.ts",
+      "outDir": "dist/js",
       "outExt": ".js",
       "minify": false,
       "sourceMaps": {
@@ -13,8 +17,8 @@
       }
     },
     "sass": {
-      "src": "example/src/scss/**/*.scss",
-      "outDir": "example/dist/css",
+      "src": "src/scss/**/*.scss",
+      "outDir": "dist/css",
       "outExt": ".css",
       "minify": false,
       "sourceMaps": {
@@ -26,51 +30,34 @@
     },
     "assets": [
       {
-        "src": "node_modules/font-awesome/css/font-awesome.min.css",
-        "outDir": "example/dist/css"
+        "src": "src/img/**/*.{png,jpg,jpeg,gif,webp,svg}",
+        "outDir": "dist/img"
       },
       {
-        "src": "node_modules/font-awesome/fonts/**/*",
-        "outDir": "example/dist/fonts"
-      }
-    ],
-    "clean": []
-  },
-  "prod": {
-    "typescript": {
-      "src": "example/src/ts/**/*.ts",
-      "outDir": "example/dist/js",
-      "outExt": ".js",
-      "minify": true,
-      "sourceMaps": {
-        "use": true,
-        "external": true,
-        "externalRelDir": "../maps/js",
-        "externalURLPrefix": ""
-      }
-    },
-    "sass": {
-      "src": "example/src/scss/**/*.scss",
-      "outDir": "example/dist/css",
-      "outExt": ".css",
-      "minify": true,
-      "sourceMaps": {
-        "use": true,
-        "external": true,
-        "externalRelDir": "../maps/css",
-        "externalURLPrefix": ""
-      }
-    },
-    "assets": [
-      {
-        "src": "node_modules/font-awesome/css/font-awesome.min.css",
-        "outDir": "example/dist/css"
+        "src": "src/js/**/*.js",
+        "outDir": "dist/js"
       },
       {
-        "src": "node_modules/font-awesome/fonts/**/*",
-        "outDir": "example/dist/fonts"
+        "src": "node_modules/font-awesome/fonts/**/*.{woff2,woff,eot,ttf,svg}",
+        "outDir": "dist/fonts"
+      },
+      {
+        "src": "node_modules/font-awesome/css/font-awesome.min.css",
+        "outDir": "dist/css"
+      },
+      {
+        "src": "node_modules/jquery/dist/jquery.min.js",
+        "outDir": "dist/js"
+      },
+      {
+        "src": "node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "outDir": "dist/css"
+      },
+      {
+        "src": "node_modules/bootstrap/dist/js/bootstrap.min.js",
+        "outDir": "dist/js"
       }
     ],
-    "clean": []
+    "clean": ["dist"]
   }
 }
