@@ -150,7 +150,7 @@ gulp.task('build', function(callback) {
 gulp.task('watch', ['browser-sync'], function(callback) {
   getEnv();
 
-  runSequence(['ts', 'sass', 'html'], callback);
+  runSequence(['clean', 'ts', 'sass', 'assets', 'html'], callback);
 
   gulp.watch(env.typescript.src, ['ts']);
   gulp.watch(env.sass.src, ['sass']);
