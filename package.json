@@ -9,6 +9,7 @@
     "browser-sync": "^2.23.6",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^5.0.0",
     "gulp-cssnano": "^2.1.2",
     "gulp-expect-file": "0.0.7",
     "gulp-if": "^2.0.2",

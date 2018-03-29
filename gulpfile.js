@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var cssnano = require('gulp-cssnano');
+var autoprefixer = require('gulp-autoprefixer');
 var gulpIf = require('gulp-if');
 var rename = require('gulp-rename');
 var sass = require('gulp-sass');
@@ -97,6 +98,12 @@ gulp.task('sass', function() {
 
   return gulp
     .src(env.sass.src)
+    .pipe(
+      autoprefixer({
+        browsers: ['last 2 versions'],
+        cascade: false,
+      })
+    )
     .pipe(gulpIf(env.sass.sourceMaps.use, sourcemaps.init()))
     .pipe(sass().on('error', sass.logError))
     .pipe(gulpIf(env.sass.minify, cssnano()))
