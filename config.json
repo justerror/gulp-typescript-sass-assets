@@ -56,6 +56,10 @@
       {
         "src": "node_modules/bootstrap/dist/js/bootstrap.min.js",
         "outDir": "dist/js"
+      },
+      {
+        "src": "node_modules/popper.js/dist/umd/popper.min.js",
+        "outDir": "dist/js"
       }
     ],
     "clean": ["dist"]

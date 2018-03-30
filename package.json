@@ -6,6 +6,8 @@
     "precommit": "run-s format:fix"
   },
   "devDependencies": {
+    "@types/bootstrap": "^4.0.0",
+    "@types/jquery": "^3.3.1",
     "browser-sync": "^2.23.6",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
