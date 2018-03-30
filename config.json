@@ -1,7 +1,8 @@
 {
   "dev": {
+    "dist": "dist",
     "html": {
-      "src": "src/**/*.html",
+      "src": "src/**/[^_]*.html",
       "outDir": "dist"
     },
     "typescript": {
@@ -34,12 +35,12 @@
         "outDir": "dist/img"
       },
       {
-        "src": "src/js/**/*.js",
-        "outDir": "dist/js"
-      },
-      {
         "src": "node_modules/font-awesome/fonts/**/*.{woff2,woff,eot,ttf,svg}",
         "outDir": "dist/fonts"
+      },
+      {
+        "src": "node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "outDir": "dist/css"
       },
       {
         "src": "node_modules/font-awesome/css/font-awesome.min.css",
@@ -50,15 +51,11 @@
         "outDir": "dist/js"
       },
       {
-        "src": "node_modules/bootstrap/dist/css/bootstrap.min.css",
-        "outDir": "dist/css"
-      },
-      {
         "src": "node_modules/bootstrap/dist/js/bootstrap.min.js",
         "outDir": "dist/js"
       },
       {
-        "src": "node_modules/popper.js/dist/umd/popper.min.js",
+        "src": "src/js/**/*.js",
         "outDir": "dist/js"
       }
     ],

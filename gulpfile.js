@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var cssnano = require('gulp-cssnano');
 var autoprefixer = require('gulp-autoprefixer');
 var gulpIf = require('gulp-if');
+var concat = require('gulp-concat');
 var rename = require('gulp-rename');
 var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
@@ -11,7 +12,10 @@ var util = require('gulp-util');
 var runSequence = require('run-sequence');
 var merge = require('merge-stream');
 var del = require('del');
+var fileinclude = require('gulp-file-include');
+var size = require('gulp-size');
 var bs = require('browser-sync').create();
+var debug = require('gulp-debug');
 
 // config files
 
@@ -50,21 +54,31 @@ function getEnv() {
 
 // Live server
 gulp.task('browser-sync', function() {
+  getEnv();
+
   bs.init({
     server: {
-      baseDir: './dist',
-      index: 'index.html',
+      baseDir: './' + env.dist,
     },
     ghostMode: false,
     notify: false,
-    open: true,
+    open: false,
   });
 });
 
 gulp.task('html', function() {
   getEnv();
 
-  return gulp.src(env.html.src).pipe(gulp.dest(env.html.outDir));
+  return gulp
+    .src(env.html.src)
+    .pipe(
+      fileinclude({
+        prefix: '@@',
+        basepath: '@file',
+        indent: true,
+      })
+    )
+    .pipe(gulp.dest(env.html.outDir));
 });
 
 gulp.task('ts', function() {
@@ -105,7 +119,7 @@ gulp.task('sass', function() {
       })
     )
     .pipe(gulpIf(env.sass.sourceMaps.use, sourcemaps.init()))
-    .pipe(sass().on('error', sass.logError))
+    .pipe(sass({ outputStyle: 'expanded' }).on('error', sass.logError))
     .pipe(gulpIf(env.sass.minify, cssnano()))
     .pipe(rename({ extname: env.sass.outExt }))
     .pipe(
@@ -141,10 +155,15 @@ gulp.task('clean', function() {
   return del.sync(env.clean);
 });
 
+gulp.task('size-dest', function() {
+  getEnv();
+  return gulp.src(env.dist + '/**/*').pipe(size({ showTotal: true, pretty: true }));
+});
+
 gulp.task('build', function(callback) {
   getEnv();
 
-  runSequence('clean', 'ts', 'sass', 'assets', 'html', callback);
+  runSequence('clean', 'ts', 'sass', 'assets', 'html', 'size-dest', callback);
 });
 
 gulp.task('watch', ['browser-sync'], function(callback) {
@@ -161,8 +180,8 @@ gulp.task('help', function() {
   util.log(`
 Usage: gulp [TASK] [--env ENVIRONMENT]
 Tasks:
-    build         Clean files, compile TypeScript and Sass and copy assets
-    watch         Watch and recompile TypeScript and Sass and run live server
+    build         Compile TypeScript and Sass and copy assets
+    watch         Watch and recompile TypeScript and Sass and copy assets and run live server
     ts            Compile TypeScript
     sass          Compile Sass
     assets        Copy assets
