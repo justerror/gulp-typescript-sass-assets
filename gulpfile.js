@@ -40,7 +40,9 @@ function getEnv() {
   var envKey = envKeys[0];
   if (typeof util.env.env == 'string') {
     if (envKeys.indexOf(util.env.env) == -1) {
-      util.log("Environment '" + util.env.env + "' does not exist in config.json");
+      util.log(
+        "Environment '" + util.env.env + "' does not exist in config.json"
+      );
       process.exit(1);
     }
     envKey = util.env.env;
@@ -94,10 +96,13 @@ gulp.task('ts', function() {
       gulpIf(
         env.typescript.sourceMaps.use,
         sourcemaps.write(
-          env.typescript.sourceMaps.external ? env.typescript.sourceMaps.externalRelDir : null,
+          env.typescript.sourceMaps.external
+            ? env.typescript.sourceMaps.externalRelDir
+            : null,
           env.typescript.sourceMaps.external
             ? {
-                sourceMappingURLPrefix: env.typescript.sourceMaps.externalURLPrefix,
+                sourceMappingURLPrefix:
+                  env.typescript.sourceMaps.externalURLPrefix,
               }
             : null
         )
@@ -126,7 +131,9 @@ gulp.task('sass', function() {
       gulpIf(
         env.sass.sourceMaps.use,
         sourcemaps.write(
-          env.sass.sourceMaps.external ? env.sass.sourceMaps.externalRelDir : null,
+          env.sass.sourceMaps.external
+            ? env.sass.sourceMaps.externalRelDir
+            : null,
           env.sass.sourceMaps.external
             ? {
                 sourceMappingURLPrefix: env.sass.sourceMaps.externalURLPrefix,
@@ -155,15 +162,17 @@ gulp.task('clean', function() {
   return del.sync(env.clean);
 });
 
-gulp.task('size-dest', function() {
+gulp.task('size-dist', function() {
   getEnv();
-  return gulp.src(env.dist + '/**/*').pipe(size({ showTotal: true, pretty: true }));
+  return gulp
+    .src(env.dist + '/**/*')
+    .pipe(size({ showTotal: true, pretty: true }));
 });
 
 gulp.task('build', function(callback) {
   getEnv();
 
-  runSequence('clean', 'ts', 'sass', 'assets', 'html', 'size-dest', callback);
+  runSequence('clean', 'ts', 'sass', 'assets', 'html', 'size-dist', callback);
 });
 
 gulp.task('watch', ['browser-sync'], function(callback) {
